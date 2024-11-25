@@ -1,0 +1,139 @@
+body {
+    overflow:visible;
+    height: auto;
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+    font-size: 1.0rem;
+}
+
+#background-grad {
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+}
+
+#main-flexbox {
+    margin: 0;
+    height: auto;
+    display: flex;
+    font-family: 'kingthings_exeterregular', Arial, sans-serif;
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+#nav-main {
+    flex: 0 0 200px;
+    color: #000000;
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 3em;
+}
+
+#nav-main img {
+    max-width: 15em;
+    padding: 1em;
+}
+
+#nav-main ul {
+    padding: 1em 1em;
+    width: 100%;
+    list-style: none;
+}
+
+#nav-main li {
+    padding: 0.2em 1em;
+    font-size: 1.5em;
+    text-decoration: none;
+    text-align: left;
+    color: #2b006f;
+}
+
+#nav-main li a { 
+    color: #2b006f;
+}
+
+#nav-main li::before {    
+    background-image: url("../images/logo/daisy.png");
+    background-size: 1em;
+    padding-right: 8px;
+}
+
+div.main-header {
+    margin: 3em;
+}
+
+.main-container {
+    flex: 5 0;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 40em;
+    margin: auto auto auto 6%;
+    scroll-behavior: auto;
+}
+
+.main-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.main-text, .main-image {
+    flex: 1;
+    font-family: Arial, sans-serif;    
+}
+
+.main-text {
+    padding: 0 20px;
+    align-items: center;
+}
+
+.main-image img {
+    width: 100%;
+    max-width: fit-content;
+    height: auto;
+}
+
+#footer {
+    height: 10vh;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-size: .5em;
+}
+
+h1{
+    font-family: 'kingthings_exeterregular', Arial, sans-serif;
+    font-size: 2em;
+    color: #00271a;
+}
+h2{
+    font-family: 'kingthings_exeterregular', Arial, sans-serif;
+    font-size: 1.5em;
+    color: #2b006f;
+}
+a { 
+    color: #4f1d00;
+}
+@media (max-width: 800px) {
+    #main-flexbox {
+      flex-direction: column;
+    }
+    #nav-main {
+      flex-direction: row;
+    }
+    #nav-main img {
+        max-width: 8em;
+        padding: 1em;
+    }    
+    #nav-main li {
+        padding: 0.1em 0.2em;
+        font-size: 1.5em;
+        text-decoration: none;
+        text-align: left;
+        color: #582000;
+    }
+    div.main-header {
+        margin: 0 0;
+    }
+    .main-section {
+        flex-direction: column;
+    }
+  }

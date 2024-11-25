@@ -1,0 +1,40 @@
+name: Blob storage website CI
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ master ]
+  workflow_dispatch:
+    
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.COSMICVIBRATIONS_AZURE_CREDENTIALS }}
+      
+      - name: Upload to blob storage
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+              az storage blob upload-batch --account-name cosmicvibrations --auth-mode key -d '$web' -s . --overwrite
+      
+      - name: Purge AFD cache
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+              az afd endpoint purge --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} --profile-name ${{ secrets.AZURE_FRONT_DOOR_PROFILE }} --endpoint-name ${{ secrets.AZURE_FRONT_DOOR_ENDPOINT_NAME }} --domains ${{ secrets.AZURE_FRONT_DOOR_DOMAINS }} --content-paths "/*"
+              
+    # Azure logout
+      - name: logout
+        run: |
+              az logout
+        if: always()
